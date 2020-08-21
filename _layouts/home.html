@@ -1,0 +1,79 @@
+---
+layout: default
+---
+
+<!-- Page Header -->
+{% if page.background %}
+  <header class="masthead" style="background-image: url('{{ page.background | prepend: site.baseurl | replace: '//', '/' }}')">
+  {% else %}
+    <header class="masthead">
+    {% endif %}
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1>{{ site.title }}</h1>
+            {% if site.description %}
+              <span class="subheading">{{ site.description }}</span>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+  <div class="container">
+    <div class="row">
+    	<div class="col-lg-8 col-md-10 mx-auto">
+    		<article class="post-preview">
+  			<h2><b>HISTORY</b></h2>
+  			<p style="text-align: justify;">The Cavite State University (CvSU) has its humble beginnings in 1906 as the Indang Intermediate School with the American Thomasites as the first teachers. Several transformations in the name of the school took place; Indang Farm School in 1918, Indang Rural High School in 1927, and Don Severino National Agriculture School in 1958. In 1964, the school was converted into a State College by virtue of Republic Act 3917 and became known as Don Severino Agricultural College (DSAC).</p>
+  			<p><b>FOR MORE INFO:<a href="https://en.m.wikipedia.org/wiki/Cavite_State_University" title="HISTORY"> CLICK HERE</a></b></p>
+  			<p></p>
+  		  </article>
+    	</div>	
+    </div>	
+  </div>
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        {{ content }}
+
+        <!-- Home Post List -->
+        <p><h1><b>LATEST NEWS AND EVENTS</b></h1></p>	
+        {% for post in site.posts limit : 2 %}
+        
+          <article class="post-preview">
+            <a href="{{ post.url | prepend: site.baseurl | replace: '//', '/' }}">
+              <h2 class="post-title">{{ post.title }}</h2>
+              {% if post.subtitle %}
+                <h3 class="post-subtitle">{{ post.subtitle }}</h3>
+              {% else %}
+                <h3 class="post-subtitle">{{ post.excerpt | strip_html | truncatewords: 15 }}</h3>
+              {% endif %}
+            </a>
+            <p class="post-meta">Posted by
+              {% if post.author %}
+                {{ post.author }}
+              {% else %}
+                {{ site.author }}
+              {% endif %}
+              on
+              {{ post.date | date: '%B %d, %Y' }}</p>
+          </article>
+
+          <hr>
+
+        {% endfor %}
+
+        <!-- Pager -->
+        <div class="clearfix">
+          <a class="btn btn-primary float-right" href="{{"/posts" | relative_url }}">View All Posts &rarr;</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
